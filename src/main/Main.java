@@ -4,7 +4,7 @@ import java.util.Scanner;
 /**
  * Program translating simple sentences (pronoun + verb) from English to Māori.
  * <p>
- * When using amiguous pronouns, a specification needs to follow, e.g. 
+ * When using ambiguous pronouns, a specification needs to follow, e.g. 
  * <p>
  * "We (2 excl)", meaning it is refering to two people, excluding the listener.
  * <p>
