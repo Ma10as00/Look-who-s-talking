@@ -5,3 +5,6 @@ Kei te pānui kōrua
 I haere au
 Ka haere au
 INVALID
+Kei te haere mātou
+I pānui ia
+Ka pānui ia

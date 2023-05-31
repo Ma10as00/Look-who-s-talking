@@ -5,3 +5,6 @@ You (2 incl) are reading
 I went
 I will go
 gibberish
+We (6 excl) are going
+He read
+He will read

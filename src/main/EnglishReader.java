@@ -41,16 +41,19 @@ public class EnglishReader {
         }
         //Present tense:
         for(Meaning m : Meaning.values()){
-            String str = switch (m) {    //Special cases for the irregular verbs
-                case MAKE -> "making";
-                default -> m.toString().toLowerCase() + "ing";  //For regular verbs
-            };
-            VerbPropertySet vps = new VerbPropertySet(m, Tense.PRESENT);
-            verbDictionary.put(str, vps);
+            String[] isAreAm = {"is","are","am"};
+            for(String is : isAreAm){
+                String str = switch (m) {    //Special cases for the irregular verbs
+                    case MAKE -> is + " " + "making";
+                    default -> is + " " + m.toString().toLowerCase() + "ing";  //For regular verbs
+                };
+                VerbPropertySet vps = new VerbPropertySet(m, Tense.PRESENT);
+                verbDictionary.put(str, vps);
+            }
         }
         //Future tense:
         for(Meaning m : Meaning.values()){  //No irregular verbs
-            String str = m.toString().toLowerCase();
+            String str = "will " + m.toString().toLowerCase();
             VerbPropertySet vps = new VerbPropertySet(m, Tense.FUTURE);
             verbDictionary.put(str, vps);
         }
@@ -87,6 +90,7 @@ public class EnglishReader {
     public void read(String s){
         s.toLowerCase();
         String[] words = s.split(" ");
+        int wordsInSubject = 0;
 
         //Find subject
         String subjectString;
@@ -95,20 +99,29 @@ public class EnglishReader {
             if(words[1].startsWith("(") && words[2].endsWith(")")){ //include parethesis in subject-term
                 int number = Integer.parseInt(words[1].substring(1));
                 if(number > 3){
-                    subjectString = words[0] + " (" + 3 + " " + words[2];   //Treat all numbers above 3 like 3
+                    subjectString = words[0] + " (" + 3 + " " + words[2];       //Treat all numbers above 3 like 3
                 }else{
-                    subjectString = words[0] + " " + words[1] + " " + words[2];
+                    subjectString = words[0] + " " + words[1] + " " + words[2]; //paranthesis had number 1, 2 or 3
                 }
+                wordsInSubject = 3;
             }else{
-                subjectString = words[0];  //Sentence had no parenthesis
+                subjectString = words[0];  //Sentence had more than two words, but no parenthesis
+                wordsInSubject = 1;
             }
         }else{
-            subjectString = words[0];  //Sentence had no parenthesis
+            subjectString = words[0];  //Sentence had less than three words, so no parenthesis
+            wordsInSubject = 1;
         }
         subject = subjDictionary.get(subjectString.toLowerCase());
 
         //Find verb
-        String lastWord = words[words.length - 1];
-        verb = verbDictionary.get(lastWord);
+        String verbString = "";
+        for(int i = wordsInSubject; i < words.length; i++){
+            verbString += words[i] + " ";   //Add all words after subject into verb
+        }
+        if(verbString.endsWith(" ")){
+            verbString = verbString.substring(0, verbString.length()-1); //Remove last space
+        }
+        verb = verbDictionary.get(verbString);
     }
 }

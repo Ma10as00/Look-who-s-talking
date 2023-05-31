@@ -31,4 +31,4 @@ The abstraction holds the following properties:
 
 ## Testing
 
-Tested by a JUnit test file, reading from testInput.txt and making sure, the output matches the data in testOutput.txt.
+Tested by a JUnit test file, reading from testInput.txt and making sure the output matches the data in testOutput.txt.
