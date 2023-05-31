@@ -23,6 +23,7 @@ The program can only translate the following eight verbs:
 The program performs the translation via an intermediate stage of abstract grammatical properties.
 The program defines an EnglishReader that abstracts all relevant information from the English input into properties.
 The abstraction is then utilized by a MāoriWriter, who builds Māori output based on the properties.
+A very nice thing about this architecture, is that you can change the implementation of the reader without affecting the writer, and vice versa.
 The abstraction holds the following properties:
 - Person:   First-, second- or third-person, inclusive or exclusive of the listener
 - noPeople: The number of people referred to (1, 2 or >2)
