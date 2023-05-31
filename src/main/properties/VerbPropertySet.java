@@ -1,6 +1,10 @@
-package main;
+package main.properties;
 import java.util.HashSet;
 
+/**
+ * Set of all properties we need to translate the verbs from English to Māori.
+ * @author Mathias Øgaard
+ */
 public class VerbPropertySet extends HashSet<Property>{
     
     public VerbPropertySet(Meaning m, Tense t){

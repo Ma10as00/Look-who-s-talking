@@ -2,6 +2,17 @@ package main;
 import java.util.HashMap;
 import java.util.Map;
 
+import main.properties.Meaning;
+import main.properties.NoPeople;
+import main.properties.Person;
+import main.properties.SubjectPropertySet;
+import main.properties.Tense;
+import main.properties.VerbPropertySet;
+
+/**
+ * Class to read English sentences and translate it into a set of properties, specifically a {@link VerbPropertySet} and a {@link SubjectPropertySet}.
+ * @author Mathias Øgaard
+ */
 public class EnglishReader {
 
     private Map<String,VerbPropertySet> verbDictionary;     //English --> Abstraction
@@ -10,6 +21,9 @@ public class EnglishReader {
     private VerbPropertySet verb;       //Abstraction
     private SubjectPropertySet subject; //Abstraction
 
+    /**
+     * Builds up the dictionaries for this reader to be able to translate English into a set of abstract properties 
+     */
     public EnglishReader(){
         //Build verb dictionary
         verbDictionary = new HashMap<>();
@@ -67,7 +81,7 @@ public class EnglishReader {
     }
     
     /**
-     * Reads an english sentence, and puts all the found properties into the {@link EnglishReader#verbDictionary} and the {@link EnglishReader#subjDictionary}.
+     * Reads an english sentence, and puts all the found properties into the {@link EnglishReader#verb} and the {@link EnglishReader#subject}.
      * @param s - String to read
      */
     public void read(String s){

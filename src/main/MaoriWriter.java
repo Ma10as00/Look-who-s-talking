@@ -2,6 +2,17 @@ package main;
 import java.util.HashMap;
 import java.util.Map;
 
+import main.properties.Meaning;
+import main.properties.NoPeople;
+import main.properties.Person;
+import main.properties.SubjectPropertySet;
+import main.properties.Tense;
+import main.properties.VerbPropertySet;
+
+/**
+ * Class to produce Māori sentences from a set of properties, specifically a {@link VerbPropertySet} and a {@link SubjectPropertySet}.
+ * @author Mathias Øgaard
+ */
 public class MaoriWriter {
 
     private Map<VerbPropertySet, String> verbDictionary;        // Abstractioin --> Māori
@@ -11,6 +22,9 @@ public class MaoriWriter {
     private VerbPropertySet verb;       //Māori
     private SubjectPropertySet subject; //Māori
 
+    /**
+     * Builds up the dictionaries for this writer to be able to translate a set of abstract properties into Māori sentences.
+     */
     public MaoriWriter(VerbPropertySet verb, SubjectPropertySet subject){
         this.verb = verb;
         this.subject = subject;
@@ -58,6 +72,9 @@ public class MaoriWriter {
         subjDictionary.put(new SubjectPropertySet(NoPeople.PLURAL,Person.THIRD), "r\u0101tou");         //rātou
     }
 
+    /**
+     * @return The Māori sentence that derives from the properties in the {@link MaoriWriter#verb} and the {@link MaoriWriter#subject}.
+     */
     public String getTranslation(){
         if(subject == null || verb == null){
             return "INVALID";
@@ -66,6 +83,9 @@ public class MaoriWriter {
         }
     }
 
+    /**
+     * Prints the Māori sentence that derives from the properties in the {@link MaoriWriter#verb} and the {@link MaoriWriter#subject} to {@link System#out}.
+     */
     public void write(){
         System.out.println(getTranslation());
     }
