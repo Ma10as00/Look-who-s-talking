@@ -1,3 +1,4 @@
+package main;
 
 public enum Meaning implements Property{
     GO,
