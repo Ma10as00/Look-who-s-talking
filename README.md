@@ -1,4 +1,4 @@
-# etude 05 - Look Who's Talking
+# Etude 05 - Look Who's Talking
 
 ## Program description
 
